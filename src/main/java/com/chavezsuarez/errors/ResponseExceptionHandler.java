@@ -18,7 +18,6 @@ public class ResponseExceptionHandler {
         String developerName = "Ruben chavez";
         String developerPage = "https://convertsystems.store";
         String appName = "Evaluacion soluciones web 2025";
-        String errorCode = "ERR-WEB-7385";
 
         String requestPath = request.getDescription(false).replace("uri=", "");
         
@@ -27,20 +26,11 @@ public class ResponseExceptionHandler {
         return ErrorResponse.builder(ex, HttpStatus.NOT_FOUND, ex.getMessage())
                 .title("Recurso no encontrado")
                 .type(URI.create(fullUrl))
-                .detail(String.format(
-                        "No se encontró el recurso solicitado en: %s. Verifique que el ID o parámetros sean correctos.",
-                        fullUrl))
+                .detail("No se encontró el recurso solicitado en verifique que el ID o parámetros sean correctos.")
                 .property("application", appName)
                 .property("developer", developerName)
                 .property("developer-page", developerPage)
-                .property("error-code", errorCode)
                 .property("timestamp", LocalDateTime.now().toString())
-                .property("request-url", fullUrl)
-                .property("endpoint-path", requestPath)
-                .property("support-email", developerPage + "/contact")
-                .property("documentation-url", "https://docs.miaplicacion.com/errors/ERR-WEB-7385")
-                .property("troubleshooting",
-                        "1. Verifique que el ID exista\n2. Confirme los permisos de acceso\n3. Revise los logs de la aplicación")
                 .build();
     }
 
